@@ -1,6 +1,9 @@
    // defines pins numbers
 const int trigPin = 9;
 const int echoPin = 10;
+// defines variables
+long duration;
+int distance;
 
 void setup() {
   pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
@@ -14,8 +17,6 @@ void loop(){
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
 
-  digitalWrite(cylinderA,LOW);
-  digitalWrite(cylinderB,LOW);
   
   // Sets the trigPin on HIGH state for 10 micro seconds
   digitalWrite(trigPin, HIGH);
