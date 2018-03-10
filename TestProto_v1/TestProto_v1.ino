@@ -8,9 +8,7 @@ const int greenLED = 7;
 const int yellowLED = 6;
 const int redLED = 5;
 
-const int mosTrig =13;
 
-const int releaseTrig =4;
 
 const int cylinderA= 12; //blue LED
 const int cylinderB= 11; //white LED
@@ -26,10 +24,8 @@ void setup() {
   pinMode(greenLED,OUTPUT);
   pinMode(yellowLED,OUTPUT);
   pinMode(redLED,OUTPUT);
-
-  pinMode(releaseTrig,OUTPUT);
   
-  attachInterrupt(yellowLED,fcn_smallBrake,HIGH); //brake at warning level
+//  attachInterrupt(yellowLED,fcn_smallBrake,HIGH); //brake at warning level
   attachInterrupt(redLED,fcn_largeBrake,HIGH); //more air at extreme warning level
 
 
@@ -67,19 +63,23 @@ void loop() {
 }
 
 void fcn_LED(){
-  if(distance>100){
+  if(distance>20){
       digitalWrite(greenLED,HIGH);
       digitalWrite(yellowLED,LOW);
       digitalWrite(redLED,LOW);
-  }else if(distance<=100 && distance>=60){
-      digitalWrite(greenLED,LOW);
-      digitalWrite(yellowLED,HIGH);
-      digitalWrite(redLED,LOW);
-      fcn_smallBrake();
-  }else{
+  }//else if(distance<=100 && distance>=60){
+     // digitalWrite(greenLED,LOW);
+     // digitalWrite(yellowLED,HIGH);
+     // digitalWrite(redLED,LOW);
+      //digitalWrite(12, HIGH);
+      //digitalWrite(11,LOW);
+     // fcn_smallBrake();
+  else{
       digitalWrite(greenLED,LOW);
       digitalWrite(yellowLED,LOW);
       digitalWrite(redLED,HIGH);
+      //digitalWrite(12, HIGH);
+     // digitalWrite(11,LOW);
       fcn_largeBrake();  
   }
   digitalWrite(cylinderB,HIGH);
@@ -105,12 +105,5 @@ void fcn_largeBrake(){
   delay(3500);
 }
 
-
-void fcn_mosBlink(){
-  digitalWrite(releaseTrig,HIGH);
-  delay(1000);
-  digitalWrite(releaseTrig,LOW);
-  delay(1000);
-  }
 
 
